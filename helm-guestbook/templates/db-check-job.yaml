@@ -1,0 +1,27 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: db-check-job
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  template:
+    metadata: {}
+    spec:
+      containers:
+      - image: busybox
+        name: db-check-job
+        resources: {}
+        volumeMounts:
+          - mountPath: /opt/db-config
+            name: db-config
+        command:
+          - "/bin/sh"
+          - "-c"
+          - "echo /opt/db-config && sleep 30"
+      restartPolicy: Never
+      volumes:
+        - configMap:
+            name: db-config
+          name: db-config
+status: {}
