@@ -13,6 +13,6 @@ spec:
       - image: busybox
         name: presync-job
         resources: {}
-        command: ["/bin/sh", "-c", "echo 'Running database migrations...' && sleep 10"]
+        command: ["/bin/sh", "-c", "echo 'Running database migrations...' && sleep 40"]
       restartPolicy: Never
 status: {}
